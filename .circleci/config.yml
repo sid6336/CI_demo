@@ -14,13 +14,11 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
+            conda env create -f CI_demo.yml
       # Step 3: run linter and tests
       - run:
           name: run tests
           command: |
-            . venv/bin/activate
+            conda activate CI_demo
             flake8 --exclude=venv* --statistics
             pytest -v --cov=calculator
